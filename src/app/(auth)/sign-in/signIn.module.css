@@ -1,0 +1,130 @@
+.container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 100vh;
+		width: 100%;
+		padding: 0 10px;
+		position: relative;
+}
+
+.container::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: url("../assets/login-hero-bg.jpg"), #000;
+		background-position: center;
+		background-size: cover;
+		z-index: -1;
+}
+
+.wrapper {
+		width: 400px;
+		border-radius: 8px;
+		padding: 30px;
+		text-align: center;
+		border: 1px solid rgba(255, 255, 255, 0.5);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		background: rgba(255, 255, 255, 0.08);
+}
+
+.title {
+		font-size: 2rem;
+		margin-bottom: 20px;
+		color: #fff;
+}
+
+.form {
+		display: flex;
+		flex-direction: column;
+}
+
+.inputField {
+		position: relative;
+		border-bottom: 2px solid #ccc;
+		margin: 15px 0;
+}
+
+.inputField input {
+		width: 100%;
+		height: 40px;
+		background: transparent;
+		border: none;
+		outline: none;
+		font-size: 16px;
+		color: #fff;
+}
+
+.inputField label {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		transform: translateY(-50%);
+		color: #aaa;
+		font-size: 16px;
+		pointer-events: none;
+		transition: 0.15s ease;
+}
+
+.inputField input:focus + label,
+.inputField input:not(:placeholder-shown) + label {
+		font-size: 0.8rem;
+		top: 10px;
+		transform: translateY(-120%);
+		color: #fff;
+}
+
+.forget {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin: 25px 0 35px;
+		color: #fff;
+		font-size: 0.95rem;
+}
+
+.rememberLabel {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		cursor: pointer;
+}
+
+.rememberCheckbox {
+		accent-color: #fff;
+}
+
+.link {
+		color: #efefef;
+		text-decoration: none;
+}
+
+.link:hover {
+		text-decoration: underline;
+}
+
+.button {
+		background: #fff;
+		color: #000;
+		font-weight: 600;
+		border: none;
+		padding: 12px 20px;
+		cursor: pointer;
+		border-radius: 3px;
+		font-size: 16px;
+		border: 2px solid transparent;
+		transition: 0.3s ease;
+}
+
+.button:hover {
+		color: #fff;
+		border-color: #fff;
+		background: rgba(255, 255, 255, 0.15);
+}
+
+.register {
+		margin-top: 30px;
+		color: #fff;
+		font-size: 0.95rem;
+}
