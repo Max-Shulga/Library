@@ -1,0 +1,82 @@
+/* features/dashboard/components/DashboardTabs.module.css */
+
+.root {
+		width: 100%;
+		background-color: var(--background-second); /* тёмный фон карточки/секции */
+		border-radius: 12px;
+		overflow: hidden;
+}
+
+.list {
+		position: relative;
+		display: flex;
+		align-items: center;
+		background-color: var(--background-input);
+		border-bottom: 1px solid var(--border-primary);
+		padding: 0 16px;
+		height: 48px;
+		user-select: none;
+}
+
+.tab {
+		position: relative;
+		height: 100%;
+		padding: 0 20px;
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--label-text-primary);
+		background: none;
+		border: none;
+		cursor: pointer;
+		transition: color 0.2s ease;
+		white-space: nowrap;
+		&:hover {
+				color: var(--blue-400);
+		}
+}
+
+.tab
+
+.tab:focus-visible {
+		outline: none;
+		color: #60a5fa;
+}
+
+.tab[data-active] {
+		color: #e2e8f0;
+		font-weight: 600;
+}
+
+/* Индикатор — тонкая линия снизу */
+.indicator {
+		position: absolute;
+		bottom: 0;
+		height: 3px;                /* толщина линии */
+		background-color: #3b82f6;  /* синий акцент, как в твоей кнопке Sign In */
+		border-radius: 3px 3px 0 0;
+		transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+		/* Base UI сам устанавливает --active-tab-left, --active-tab-width и т.д. */
+		left: var(--active-tab-left, 0);
+		width: var(--active-tab-width, 0);
+}
+
+/* Панели с контентом */
+.panels {
+		padding: 24px; /* внутренние отступы для таблиц AG Grid */
+		background-color: #111827;
+		min-height: 400px; /* минимальная высота, чтобы не прыгало */
+}
+
+.panel {
+		/* можно добавить анимацию появления, но для простоты — без */
+		outline: none;
+}
+
+.panel[data-hidden] {
+		display: none;
+}
+
+/* Для вертикальных табов (если понадобится позже) */
+@media (orientation: vertical) {
+		/* ... адаптация, если используешь data-orientation="vertical" */
+}
