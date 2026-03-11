@@ -1,40 +1,51 @@
-'use client';
-
 import { Tabs } from '@base-ui/react/tabs';
 
-import TabContent from './components/TabContent/TabContent';
+import { createClient } from 'lib/supabase/server';
+
+import TabContentList from './components/TabContentList/TabContentList';
 import styles from './DashboardTabs.module.css';
 
-const TABS = [
-  { value: 'overview', label: 'Обзор' },
-  { value: 'users', label: 'Пользователи' },
-  { value: 'orders', label: 'Заказы' },
-  // ...
-];
+import type { TDashboardTabs, TTabKey } from './models/dashboardTabs.model';
 
-const DashboardTabs = () => {
+const DashboardTabs = async ({ categories }: TDashboardTabs) => {
+  const supabase = await createClient();
+  const { data: actions, error: actionsError } = await supabase
+    .from('actions')
+    .select('*')
+    .order('id', { ascending: true });
+  const { data: equipment, error: equipmentError } = await supabase
+    .from('equipment')
+    .select('*')
+    .order('id', { ascending: true });
+  const { data: persons, error: personsError } = await supabase
+    .from('persons')
+    .select('*')
+    .order('id', { ascending: true });
+  const { data: places, error: placesError } = await supabase
+    .from('places')
+    .select('*')
+    .order('id', { ascending: true });
+
   return (
-    <Tabs.Root defaultValue="overview" className={styles.root}>
+    <Tabs.Root defaultValue="Все" className={styles.root}>
       <Tabs.List className={styles.list}>
-        {TABS.map((tab) => (
-          <Tabs.Tab key={tab.value} value={tab.value} className={styles.tab}>
-            {tab.label}
+        {categories.map((tab) => (
+          <Tabs.Tab key={tab.id} value={tab.title} className={styles.tab}>
+            {tab.value}
           </Tabs.Tab>
         ))}
         <Tabs.Indicator className={styles.indicator} />
       </Tabs.List>
-
-      <div className={styles.panels}>
-        <Tabs.Panel value="overview" className={styles.panel}>
-          <TabContent />
-        </Tabs.Panel>
-
-        <Tabs.Panel value="users" className={styles.panel}>
-          <TabContent />
-        </Tabs.Panel>
-
-        {/* другие панели */}
-      </div>
+      {categories.map((tab) => (
+        <TabContentList
+          key={tab.id}
+          actions={actions ?? []}
+          places={places ?? []}
+          persons={persons ?? []}
+          equipment={equipment ?? []}
+          tabName={tab.title as TTabKey}
+        />
+      ))}
     </Tabs.Root>
   );
 };

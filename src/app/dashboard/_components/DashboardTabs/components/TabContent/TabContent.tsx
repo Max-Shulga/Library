@@ -1,34 +1,36 @@
-import { AgGridReact } from 'ag-grid-react';
-import { useMemo, useRef } from 'react';
-const TabContent = () => {
+import { AllCommunityModule, themeQuartz, colorSchemeDarkBlue } from 'ag-grid-community';
+import { AgGridReact, AgGridProvider } from 'ag-grid-react';
+import { useRef } from 'react';
+
+import type { TTabContent } from './models/tabContent.model';
+
+const TabContent = ({ rowData, columnDefs }: TTabContent) => {
   const gridRef = useRef<AgGridReact>(null);
-
-  const columnDefs = useMemo(
-    () => [
-      { field: 'id', headerName: 'ID', width: 90 },
-      { field: 'name', headerName: 'Имя', filter: true },
-      { field: 'email', headerName: 'Email', filter: 'agTextColumnFilter' },
-      { field: 'role', headerName: 'Роль' },
-      // ...
-    ],
-    []
-  );
-
-  const rowData = [
-    { id: 1, name: 'Анна', email: 'anna@example.com', role: 'Admin' },
-    // ... реальные данные из API / zustand / react-query
-  ];
-
+  const modules = [AllCommunityModule];
+  const themeDarkBlue = themeQuartz.withPart(colorSchemeDarkBlue);
+  const defaultColDef = {
+    editable: true,
+    flex: 1,
+    minWidth: 100,
+    filter: true,
+  };
   return (
-    <div className="ag-theme-alpine" style={{ width: '100%' }}>
-      <AgGridReact
-        ref={gridRef}
-        rowData={rowData}
-        columnDefs={columnDefs}
-        pagination={true}
-        paginationPageSize={15}
-      />
+    <div style={{ flex: 1, display: 'flex', height: '100%' }}>
+      <div style={{ flex: 1 }}>
+        <AgGridProvider modules={modules}>
+          <AgGridReact
+            ref={gridRef}
+            theme={themeDarkBlue}
+            rowData={rowData}
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            pagination
+            paginationPageSize={15}
+          />
+        </AgGridProvider>
+      </div>
     </div>
   );
 };
+
 export default TabContent;

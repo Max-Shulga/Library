@@ -24,7 +24,8 @@
       "@/img/*": ["assets/img/*"],
       "@/icons/*": ["assets/icons/*"],
       "@/utils/*": ["utils/*"],
-      "@/core/*": ["core/*"]
+      "@/core/*": ["core/*"],
+      "@/database.types/*": ["database.types"]
     }
   },
   "include": [
@@ -37,5 +38,5 @@
     "**/*.mts",
     "global.d.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "database.types.ts"]
 }
