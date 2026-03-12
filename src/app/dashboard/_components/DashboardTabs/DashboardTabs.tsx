@@ -13,8 +13,8 @@ const DashboardTabs = async ({ categories }: TDashboardTabs) => {
     .from('actions')
     .select('*')
     .order('id', { ascending: true });
-  const { data: equipment, error: equipmentError } = await supabase
-    .from('equipment')
+  const { data: equipments, error: equipmentError } = await supabase
+    .from('equipments')
     .select('*')
     .order('id', { ascending: true });
   const { data: persons, error: personsError } = await supabase
@@ -42,7 +42,7 @@ const DashboardTabs = async ({ categories }: TDashboardTabs) => {
           actions={actions ?? []}
           places={places ?? []}
           persons={persons ?? []}
-          equipment={equipment ?? []}
+          equipments={equipments ?? []}
           tabName={tab.title as TTabKey}
         />
       ))}

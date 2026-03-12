@@ -9,6 +9,6 @@ type TTabConfig = {
   rowData: unknown[];
   columnDefs: ColDef[];
 };
-type TTabKey = 'all' | 'actions' | 'persons' | 'places' | 'equipment';
+type TTabKey = 'all' | 'actions' | 'persons' | 'places' | 'equipments';
 
 export type { TDashboardTabs, TTabConfig, TTabKey };

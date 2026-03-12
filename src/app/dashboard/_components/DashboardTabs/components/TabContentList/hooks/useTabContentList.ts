@@ -2,14 +2,14 @@ import type { TTabConfig, TTabKey } from '../../../models/dashboardTabs.model';
 import type {
   TActions,
   TAllRow,
-  TEquipment,
+  TEquipments,
   TPersons,
   TPlaces,
   TTabContentList,
 } from '../models/tabContentList.model';
 import type { ColDef } from 'ag-grid-community';
 
-const useTabContentList = ({ actions, equipment, persons, places }: TTabContentList) => {
+const useTabContentList = ({ actions, equipments, persons, places }: TTabContentList) => {
   const actionsColumnDefs: ColDef<TActions>[] = [
     {
       headerName: 'ID',
@@ -61,7 +61,7 @@ const useTabContentList = ({ actions, equipment, persons, places }: TTabContentL
     },
   ];
 
-  const equipmentColumnDefs: ColDef<TEquipment>[] = [
+  const equipmentsColumnDefs: ColDef<TEquipments>[] = [
     {
       headerName: 'ID',
       field: 'id',
@@ -102,7 +102,7 @@ const useTabContentList = ({ actions, equipment, persons, places }: TTabContentL
       description: null,
     })),
 
-    ...equipment.map((e) => ({
+    ...equipments.map((e) => ({
       type: 'Оборудование',
       id: e.id,
       title: e.title,
@@ -150,9 +150,9 @@ const useTabContentList = ({ actions, equipment, persons, places }: TTabContentL
       rowData: places,
       columnDefs: placesColumnDefs,
     },
-    equipment: {
-      rowData: equipment,
-      columnDefs: equipmentColumnDefs,
+    equipments: {
+      rowData: equipments,
+      columnDefs: equipmentsColumnDefs,
     },
   };
   return { tabConfig } as const;
