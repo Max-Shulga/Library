@@ -1,8 +1,6 @@
-/* features/dashboard/components/DashboardTabs.module.css */
-
 .root {
 		width: 100%;
-		background-color: var(--background-second); /* тёмный фон карточки/секции */
+		background-color: var(--background-second);
 		border-radius: 12px;
 		overflow: hidden;
 }
@@ -35,8 +33,7 @@
 		}
 }
 
-.tab
-
+.tab,
 .tab:focus-visible {
 		outline: none;
 		color: #60a5fa;
@@ -47,36 +44,31 @@
 		font-weight: 600;
 }
 
-/* Индикатор — тонкая линия снизу */
 .indicator {
 		position: absolute;
 		bottom: 0;
-		height: 3px;                /* толщина линии */
-		background-color: #3b82f6;  /* синий акцент, как в твоей кнопке Sign In */
+		height: 3px;
+		background-color: #3b82f6;
 		border-radius: 3px 3px 0 0;
 		transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-		/* Base UI сам устанавливает --active-tab-left, --active-tab-width и т.д. */
 		left: var(--active-tab-left, 0);
 		width: var(--active-tab-width, 0);
 }
 
-/* Панели с контентом */
+
 .panels {
-		padding: 24px; /* внутренние отступы для таблиц AG Grid */
+		padding: 24px;
 		background-color: #111827;
-		min-height: 400px; /* минимальная высота, чтобы не прыгало */
+		min-height: 400px;
 }
 
 .panel {
-		/* можно добавить анимацию появления, но для простоты — без */
 		outline: none;
 }
 
 .panel[data-hidden] {
 		display: none;
 }
-
-/* Для вертикальных табов (если понадобится позже) */
-@media (orientation: vertical) {
-		/* ... адаптация, если используешь data-orientation="vertical" */
+.buttonContainer{
+		margin-left: auto;
 }

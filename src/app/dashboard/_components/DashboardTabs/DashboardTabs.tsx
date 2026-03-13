@@ -1,30 +1,15 @@
 import { Tabs } from '@base-ui/react/tabs';
 
-import { createClient } from 'lib/supabase/server';
+import InsertPersonButton from '../PersonInsert/InsertPersonButton';
 
 import TabContentList from './components/TabContentList/TabContentList';
 import styles from './DashboardTabs.module.css';
+import { getTabContentList } from './services/getTabContentList';
 
 import type { TDashboardTabs, TTabKey } from './models/dashboardTabs.model';
 
 const DashboardTabs = async ({ categories }: TDashboardTabs) => {
-  const supabase = await createClient();
-  const { data: actions, error: actionsError } = await supabase
-    .from('actions')
-    .select('*')
-    .order('id', { ascending: true });
-  const { data: equipments, error: equipmentError } = await supabase
-    .from('equipments')
-    .select('*')
-    .order('id', { ascending: true });
-  const { data: persons, error: personsError } = await supabase
-    .from('persons')
-    .select('*')
-    .order('id', { ascending: true });
-  const { data: places, error: placesError } = await supabase
-    .from('places')
-    .select('*')
-    .order('id', { ascending: true });
+  const { actions, equipments, persons, places } = await getTabContentList();
 
   return (
     <Tabs.Root defaultValue="Все" className={styles.root}>
@@ -34,15 +19,17 @@ const DashboardTabs = async ({ categories }: TDashboardTabs) => {
             {tab.value}
           </Tabs.Tab>
         ))}
+        <div className={styles.buttonContainer}></div>
+        <InsertPersonButton />
         <Tabs.Indicator className={styles.indicator} />
       </Tabs.List>
       {categories.map((tab) => (
         <TabContentList
           key={tab.id}
-          actions={actions ?? []}
-          places={places ?? []}
-          persons={persons ?? []}
-          equipments={equipments ?? []}
+          actions={actions}
+          places={places}
+          persons={persons}
+          equipments={equipments}
           tabName={tab.title as TTabKey}
         />
       ))}

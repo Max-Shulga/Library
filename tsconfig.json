@@ -25,7 +25,8 @@
       "@/icons/*": ["assets/icons/*"],
       "@/utils/*": ["utils/*"],
       "@/core/*": ["core/*"],
-      "@/database.types/*": ["database.types"]
+      "@/database.types/*": ["database.types"],
+      "@/components/*": ["components/*"]
     }
   },
   "include": [

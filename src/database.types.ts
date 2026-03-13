@@ -14,6 +14,38 @@ export type Database = {
   }
   public: {
     Tables: {
+      action_details: {
+        Row: {
+          additional_data: Json | null
+          description: string | null
+          id: number
+          metadata: Json | null
+          name: string | null
+        }
+        Insert: {
+          additional_data?: Json | null
+          description?: string | null
+          id: number
+          metadata?: Json | null
+          name?: string | null
+        }
+        Update: {
+          additional_data?: Json | null
+          description?: string | null
+          id?: number
+          metadata?: Json | null
+          name?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_action_details_action"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "actions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       actions: {
         Row: {
           date: string
@@ -53,6 +85,38 @@ export type Database = {
         }
         Relationships: []
       }
+      equipment_details: {
+        Row: {
+          additional_data: Json | null
+          description: string | null
+          id: number
+          metadata: Json | null
+          name: string | null
+        }
+        Insert: {
+          additional_data?: Json | null
+          description?: string | null
+          id: number
+          metadata?: Json | null
+          name?: string | null
+        }
+        Update: {
+          additional_data?: Json | null
+          description?: string | null
+          id?: number
+          metadata?: Json | null
+          name?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_equipment_details_equipment"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "equipments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       equipments: {
         Row: {
           description: string | null
@@ -71,26 +135,73 @@ export type Database = {
         }
         Relationships: []
       }
-      persons: {
+      person_details: {
         Row: {
           description: string | null
-          features: string[] | null
           id: number
           name: string
         }
         Insert: {
           description?: string | null
-          features?: string[] | null
+          id: number
+          name: string
+        }
+        Update: {
+          description?: string | null
+          id?: number
+          name?: string
+        }
+        Relationships: []
+      }
+      persons: {
+        Row: {
+          description: string | null
+          id: number
+          name: string
+        }
+        Insert: {
+          description?: string | null
           id?: number
           name?: string
         }
         Update: {
           description?: string | null
-          features?: string[] | null
           id?: number
           name?: string
         }
         Relationships: []
+      }
+      place_details: {
+        Row: {
+          additional_data: Json | null
+          description: string | null
+          id: number
+          metadata: Json | null
+          name: string | null
+        }
+        Insert: {
+          additional_data?: Json | null
+          description?: string | null
+          id: number
+          metadata?: Json | null
+          name?: string | null
+        }
+        Update: {
+          additional_data?: Json | null
+          description?: string | null
+          id?: number
+          metadata?: Json | null
+          name?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_place_details_place"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "places"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       places: {
         Row: {

@@ -12,12 +12,6 @@ import type { ColDef } from 'ag-grid-community';
 const useTabContentList = ({ actions, equipments, persons, places }: TTabContentList) => {
   const actionsColumnDefs: ColDef<TActions>[] = [
     {
-      headerName: 'ID',
-      field: 'id',
-      width: 90,
-      sortable: true,
-    },
-    {
       headerName: 'Title',
       field: 'title',
       flex: 1,
@@ -37,23 +31,19 @@ const useTabContentList = ({ actions, equipments, persons, places }: TTabContent
   ];
   const personsColumnDefs: ColDef<TPersons>[] = [
     {
-      headerName: 'ID',
-      field: 'id',
-      width: 90,
+      headerName: 'Имя',
+      field: 'name',
+      flex: 1,
+      filter: true,
     },
     {
-      headerName: 'Name',
-      field: 'name',
+      headerName: 'Описание',
+      field: 'description',
       flex: 1,
       filter: true,
     },
   ];
   const placesColumnDefs: ColDef<TPlaces>[] = [
-    {
-      headerName: 'ID',
-      field: 'id',
-      width: 90,
-    },
     {
       headerName: 'Title',
       field: 'title',
@@ -62,11 +52,6 @@ const useTabContentList = ({ actions, equipments, persons, places }: TTabContent
   ];
 
   const equipmentsColumnDefs: ColDef<TEquipments>[] = [
-    {
-      headerName: 'ID',
-      field: 'id',
-      width: 90,
-    },
     {
       headerName: 'Name',
       field: 'title',
@@ -115,11 +100,7 @@ const useTabContentList = ({ actions, equipments, persons, places }: TTabContent
       field: 'type',
       width: 120,
     },
-    {
-      headerName: 'ID',
-      field: 'id',
-      width: 90,
-    },
+
     {
       headerName: 'Наименование',
       field: 'title',
